@@ -3,6 +3,7 @@ import './App.css';
 import Card from './components/Card';
 import Grid from '@mui/material/Grid';
 import Header from "./components/Header";
+import Lebase from './components/Lebase';
 
 const genreMapping = {
   1: 'Personal Growth',
@@ -21,11 +22,6 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('default');
   const [showEpisodes, setShowEpisodes] = useState([])
-  // const [showMore, setShowMore] = useState(false);
-  // const [numCardsToShow, setNumCardsToShow] = useState(9);
-
-
-
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -93,6 +89,9 @@ if(showEpisodes)console.log(showEpisodes)
 
   return (
     <>
+   
+     <Lebase />
+
       <Header
         searchQuery={searchQuery}
         handleSearchChange={handleSearchChange}
