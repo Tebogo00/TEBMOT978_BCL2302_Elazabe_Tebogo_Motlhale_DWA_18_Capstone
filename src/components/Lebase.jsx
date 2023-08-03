@@ -16,8 +16,6 @@ export default function Supa() {
 
   return (
     <>
-    <p>TEBOGO</p>
-
       <Auth
        supabaseClient={supabase}
        appearance={{ theme: ThemeSupa }}

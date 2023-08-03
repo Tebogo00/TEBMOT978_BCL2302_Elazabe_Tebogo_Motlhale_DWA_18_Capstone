@@ -6,8 +6,9 @@
   padding: 2rem;
   text-align: center;
   text-decoration: solid;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: inherit;
   color: #a06f6f;
+  font-size: small;
 }
 
 .card--image {
@@ -63,4 +64,9 @@ body{
   background-image: url(./components/images/logo.png);
   background-size: auto;
 
+}
+
+.image-item {
+  width: 20%;
+  border-radius: 20px;
 }

@@ -4,6 +4,7 @@ import Card from './components/Card';
 import Grid from '@mui/material/Grid';
 import Header from "./components/Header";
 import Lebase from './components/Lebase';
+import Seasons from './components/Seasons';
 
 const genreMapping = {
   1: 'Personal Growth',
@@ -22,6 +23,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('default');
   const [showEpisodes, setShowEpisodes] = useState([])
+  const [theSeason, setTheSeason ] = useState(null)
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -52,6 +54,10 @@ function App() {
 
   };
 
+  function ApiId(id){
+    setTheSeason(id)
+  }
+
   useEffect(() => {
     fetch('https://podcast-api.netlify.app/shows')
       .then((response) => response.json())
@@ -63,25 +69,6 @@ function App() {
 if(showEpisodes)console.log(showEpisodes)
 
 
-
-// useEffect(() =>{
-
-//   showPreviews.map( show => {
-    
-//     const id = show.id
-
-//   fetch(`https://podcast-api.netlify.app/id/${id}`)
-//   .then((response) => response.json())
-//   .then ((data) => {setShowEpisodes(data)})
-
-// })
- 
-// },[]) 
-
-// console.log(showEpisodes)
-
-  
-
   // Filter the shows based on the search query
   const filteredShows = showPreviews.filter((show) =>
     show.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -89,7 +76,9 @@ if(showEpisodes)console.log(showEpisodes)
 
   return (
     <>
-   
+   <Seasons 
+   id = {theSeason}
+   />
      <Lebase />
 
       <Header
@@ -108,7 +97,7 @@ if(showEpisodes)console.log(showEpisodes)
             genres={datamapping.genres.map((genresID) => genreMapping[genresID])}
             images={datamapping.image}
             updated={datamapping.updated}
-            
+            click = {() => ApiId(datamapping.id)}
           />
         ))}
       

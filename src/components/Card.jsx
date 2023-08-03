@@ -35,7 +35,7 @@ export default function Card(props) {
   };
 
   return (
-    <Grid item xs={4} className="card">
+    <Grid item xs={4} className="card" onClick={props.click}>
     
 
       {filteredData ? (
