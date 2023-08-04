@@ -1,55 +1,48 @@
-import { useEffect, useState } from "react"
-import "../App";
-
+import { useEffect, useState } from "react";
 
 export default function Seasons(prop) {
 
-    const [showSeasons, setShowSeasons] = useState(null)
+  const [showSeasons, setShowSeasons] = useState(null)
+
   useEffect(() => {
-    if(prop.id){
-        fetch(`https://podcast-api.netlify.app/id/${prop.id}`)
+    if (prop.id) {
+      fetch(`https://podcast-api.netlify.app/id/${prop.id}`)
         .then(response => response.json())
         .then(data => {
-            const seasons = data.seasons
-        const seasonsdata =seasons.map((item) => {
+          const seasons = data.seasons
+          const seasonsdata = seasons.map((item) => {
             return (
-                <>
-               
-                    <p className="title">{item.title}</p>
-                    <img  className ="image-item" src={item.image}></img>
-                    <button onClick={handleOpen}>click</button>
-                    <div className="episodes">
+              <>
+                <p className="text-color">{item.title}</p>
+                <img className="image-item" src={item.image}></img>
+                <dev>
                         {item.episodes.map((episode, episodeIndex) => {
                             return (
-                                <div key={episodeIndex} className="episodes">
+                                <main className="text-color" key={episodeIndex}>
                                     <h2>{episode.title}</h2>
                                     <p>{episode.description}</p>
                                     <audio controls>
                                         <source src={episode.file} type='audio/mpeg' />
                                     </audio>
-
-                                 
-                                </div>
+                                </main>
                             )
                         }
-                        
                         )}
-                    </div>
-
-                
-                </>
+                    </dev>
+              </>
             )
-        })
-        setShowSeasons(seasonsdata)
-
+          })
+          setShowSeasons(seasonsdata)
         })
     }
-}, [prop.id]) 
-
-return(
-    <>
-    {showSeasons}
-    </>
-)
-
+  }, [prop.id])
+  return (
+    <div className="card-container">
+      {showSeasons && showSeasons.map((season, index) => (
+        <div key={index} className="card">
+          {season}
+        </div>
+      ))}
+    </div>
+  );
 }
