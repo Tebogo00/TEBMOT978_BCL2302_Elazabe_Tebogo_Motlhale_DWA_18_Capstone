@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Lebase from './components/Lebase';
 import { supabase }from './components/Lebase';
 import Seasons from './components/Seasons';
+import Carousel from './components/Carousel';
 
 
 
@@ -97,6 +98,7 @@ function App() {
      {throwSignUp === 'signUpPhase' && <Lebase />}
      {throwSignUp === 'PreviewPhase' &&
      <>
+     <Carousel />
       <Seasons
         id={theSeason}
       />

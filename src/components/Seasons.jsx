@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import "../App";
+
 
 export default function Seasons(prop) {
 
@@ -12,23 +14,27 @@ export default function Seasons(prop) {
         const seasonsdata =seasons.map((item) => {
             return (
                 <>
+               
                     <p className="title">{item.title}</p>
                     <img  className ="image-item" src={item.image}></img>
-                    <ul>
+                    <button onClick={handleOpen}>click</button>
+                    <div className="episodes">
                         {item.episodes.map((episode, episodeIndex) => {
                             return (
-                                <li key={episodeIndex} className="episodes">
-                                    {episode.title}
-                                    {episode.description}
+                                <div key={episodeIndex} className="episodes">
+                                    <h2>{episode.title}</h2>
+                                    <p>{episode.description}</p>
                                     <audio controls>
                                         <source src={episode.file} type='audio/mpeg' />
                                     </audio>
-                                </li>
+
+                                 
+                                </div>
                             )
                         }
                         
                         )}
-                    </ul>
+                    </div>
 
                 
                 </>
