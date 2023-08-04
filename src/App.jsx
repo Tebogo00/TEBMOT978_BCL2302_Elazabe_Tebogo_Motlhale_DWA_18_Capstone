@@ -4,8 +4,9 @@ import Card from './components/Card';
 import Grid from '@mui/material/Grid';
 import Header from "./components/Header";
 import Lebase from './components/Lebase';
-import Seasons from './components/Seasons';
 import { supabase }from './components/Lebase';
+import Seasons from './components/Seasons';
+
 
 
 const genreMapping = {
