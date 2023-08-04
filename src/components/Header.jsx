@@ -15,7 +15,7 @@ const Header = ({ searchQuery, handleSearchChange, sortBy, handleSortChange }) =
           sortBy={sortBy}
           handleSortChange={handleSortChange}
         />
-        <button className="btnLogin-popup">Login 👤</button>
+
       </nav>
     </header>
   );

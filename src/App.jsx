@@ -5,6 +5,8 @@ import Grid from '@mui/material/Grid';
 import Header from "./components/Header";
 import Lebase from './components/Lebase';
 import Seasons from './components/Seasons';
+import { supabase }from './components/Lebase';
+
 
 const genreMapping = {
   1: 'Personal Growth',
@@ -23,7 +25,21 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('default');
   const [showEpisodes, setShowEpisodes] = useState([])
-  const [theSeason, setTheSeason ] = useState(null)
+  const [theSeason, setTheSeason] = useState(null)
+  const [throwSignUp, setThrowSignUp] = useState('signUpPhase')
+
+
+  React.useEffect(() => {
+    const authListener = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session) {
+        console.log("User signed in successfully:", session.user.email);
+        setThrowSignUp('PreviewPhase')
+      }
+    });
+    return () => {
+      authListener.unsubscribe;
+    };
+  }, []);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -54,7 +70,7 @@ function App() {
 
   };
 
-  function ApiId(id){
+  function ApiId(id) {
     setTheSeason(id)
   }
 
@@ -66,7 +82,7 @@ function App() {
       });
   }, []);
 
-if(showEpisodes)console.log(showEpisodes)
+  if (showEpisodes) console.log(showEpisodes)
 
 
   // Filter the shows based on the search query
@@ -76,10 +92,12 @@ if(showEpisodes)console.log(showEpisodes)
 
   return (
     <>
-   <Seasons 
-   id = {theSeason}
-   />
-     <Lebase />
+     {throwSignUp === 'signUpPhase' && <Lebase />}
+     {throwSignUp === 'PreviewPhase' &&
+     <>
+      <Seasons
+        id={theSeason}
+      />
 
       <Header
         searchQuery={searchQuery}
@@ -97,12 +115,13 @@ if(showEpisodes)console.log(showEpisodes)
             genres={datamapping.genres.map((genresID) => genreMapping[genresID])}
             images={datamapping.image}
             updated={datamapping.updated}
-            click = {() => ApiId(datamapping.id)}
+            click={() => ApiId(datamapping.id)}
           />
         ))}
-      
+
       </Grid>
-      
+      </>
+} 
     </>
 
   );
