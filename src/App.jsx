@@ -9,6 +9,7 @@ import Seasons from './components/Seasons';
 
 
 
+
 const genreMapping = {
   1: 'Personal Growth',
   2: 'True Crime and Investigative Journalism',
