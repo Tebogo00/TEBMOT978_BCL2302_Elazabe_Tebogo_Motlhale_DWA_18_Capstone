@@ -24,11 +24,7 @@
   .forward {
     right: 10px;
   }
-New
 
-
-Lulu Mosobe
-  3:06 PM
 body {
   margin: 0;
   padding: 0;
@@ -47,7 +43,7 @@ body {
 }
 .carousel-container {
   display: flex;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0s ease-in-ou;
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -78,14 +74,3 @@ body {
 .forward {
   right: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
